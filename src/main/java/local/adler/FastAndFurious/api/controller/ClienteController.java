@@ -11,11 +11,14 @@ import javax.validation.Valid;
 import local.adler.FastAndFurious.domain.model.Cliente;
 import local.adler.FastAndFurious.domain.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -30,11 +33,12 @@ public class ClienteController {
     @Autowired
     private ClienteRepository clienteRepository;
     
-    @GetMapping
+    @GetMapping("/listar")
     public List<Cliente> listar() {
         return clienteRepository.findAll();
     }
     
+    @GetMapping("/{cliente_id}")
     public ResponseEntity<Cliente> listarID(@PathVariable Long cliente_id) {
         Optional<Cliente> cliente = clienteRepository.findById(cliente_id);
         
@@ -45,6 +49,8 @@ public class ClienteController {
         }
     }
     
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Cliente criar(@Valid @RequestBody Cliente cliente) {
         return clienteRepository.save(cliente);
     }

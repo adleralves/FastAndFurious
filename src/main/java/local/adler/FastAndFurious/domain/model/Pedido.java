@@ -3,9 +3,12 @@ package local.adler.FastAndFurious.domain.model;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -20,7 +23,12 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @ManyToOne
     private Cliente id_cliente;
+    
+    @NotBlank
+    @Enumerated(EnumType.STRING)
+    private StatusPedido status;
     
     @Size(max = 100)
     private String observacao;
@@ -33,9 +41,10 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(Long id, Cliente id_cliente, String obs, LocalDateTime dataHoraPedido, LocalDateTime dataHoraEntrega) {
+    public Pedido(Long id, Cliente id_cliente,StatusPedido status, String obs, LocalDateTime dataHoraPedido, LocalDateTime dataHoraEntrega) {
         this.id = id;
         this.id_cliente = id_cliente;
+        this.status = status;
         this.observacao = obs;
         this.dataHoraPedido = dataHoraPedido;
         this.dataHoraEntrega = dataHoraEntrega;
@@ -55,6 +64,14 @@ public class Pedido {
 
     public void setId_cliente(Cliente id_cliente) {
         this.id_cliente = id_cliente;
+    }
+
+    public StatusPedido getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusPedido status) {
+        this.status = status;
     }
 
     public String getObservacao() {

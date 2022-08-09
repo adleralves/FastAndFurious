@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -24,14 +25,19 @@ public class Produto {
     
     @NotBlank
     private BigDecimal valorUnitario;
+    
+    @NotBlank
+    @Size(max = 20)
+    private String nome;
 
     public Produto() {
     }
 
-    public Produto(Long id, String descricao, BigDecimal valorUnitario) {
+    public Produto(Long id, String descricao, BigDecimal valorUnitario, String nome) {
         this.id = id;
         this.descricao = descricao;
         this.valorUnitario = valorUnitario;
+        this.nome = nome;
     }
 
     public Long getId() {
@@ -56,6 +62,14 @@ public class Produto {
 
     public void setValorUnitario(BigDecimal valorUnitario) {
         this.valorUnitario = valorUnitario;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     @Override
