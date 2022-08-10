@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
- * @author devsys-a
+ * @author adler
  */
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     

@@ -1,5 +1,6 @@
 package local.adler.FastAndFurious.domain.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -41,7 +42,7 @@ public class Cliente {
         this.bairro = bairro;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

@@ -5,5 +5,5 @@ package local.adler.FastAndFurious.domain.model;
  * @author adler
  */
 public enum StatusPedido {
-    ABERTO, FINALIZADO, CANCELADO
+    ABERTO, CONFIRMADO, CANCELADO
 }

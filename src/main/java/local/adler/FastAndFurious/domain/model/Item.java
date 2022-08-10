@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
@@ -19,6 +20,10 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @ManyToOne
+    @JoinColumn(name="id_pedido", nullable=false)
+    private Pedido id_pedido;
     
     @ManyToOne
     private Produto id_produto;
@@ -48,6 +53,14 @@ public class Item {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Pedido getId_pedido() {
+        return id_pedido;
+    }
+
+    public void setId_pedido(Pedido id_pedido) {
+        this.id_pedido = id_pedido;
     }
 
     public Produto getId_produto() {

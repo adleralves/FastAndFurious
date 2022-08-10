@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
- * @author devsys-a
+ * @author adler
  */
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
     

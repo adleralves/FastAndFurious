@@ -21,14 +21,14 @@ public class Produto {
     private Long id;
     
     @NotBlank
+    @Size(max = 20)
+    private String nome;
+    
+    @NotBlank
     private String descricao;
     
     @NotBlank
     private BigDecimal valorUnitario;
-    
-    @NotBlank
-    @Size(max = 20)
-    private String nome;
 
     public Produto() {
     }

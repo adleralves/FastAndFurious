@@ -49,7 +49,7 @@ public class ClienteController {
         }
     }
     
-    @PostMapping
+    @PostMapping("/criar")
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente criar(@Valid @RequestBody Cliente cliente) {
         return clienteRepository.save(cliente);

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author devsys-a
+ * @author adler
  */
 @Service
 public class PedidoService {
@@ -18,8 +18,8 @@ public class PedidoService {
     private PedidoRepository pedidoRepository;
     
     public Pedido criar(Pedido pedido) {
-        pedido.setDataHoraPedido(LocalDateTime.now());
-        pedido.setStatus(StatusPedido.FINALIZADO);
+        pedido.setDataHorarioPedido(LocalDateTime.now());
+        pedido.setStatus(StatusPedido.CONFIRMADO);
          
         return pedidoRepository.save(pedido);
     }

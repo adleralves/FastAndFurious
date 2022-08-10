@@ -1,14 +1,19 @@
 package local.adler.FastAndFurious.domain.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -24,7 +29,11 @@ public class Pedido {
     private Long id;
     
     @ManyToOne
-    private Cliente id_cliente;
+    private Cliente cliente;
+    
+    @OneToMany(targetEntity=Item.class, mappedBy="id_pedido", fetch=FetchType.EAGER)
+    
+    private List<Item> item = new ArrayList<>();
     
     @NotBlank
     @Enumerated(EnumType.STRING)
@@ -34,20 +43,21 @@ public class Pedido {
     private String observacao;
     
     @NotBlank
-    private LocalDateTime dataHoraPedido;
+    private LocalDateTime data_horario_pedido;
     
-    private LocalDateTime dataHoraEntrega;
+    private LocalDateTime data_horario_entrega;
 
     public Pedido() {
     }
 
-    public Pedido(Long id, Cliente id_cliente,StatusPedido status, String obs, LocalDateTime dataHoraPedido, LocalDateTime dataHoraEntrega) {
+    public Pedido(Long id, Cliente cliente, List<Item> item,StatusPedido status, String obs, LocalDateTime data_horario_pedido, LocalDateTime data_horario_entrega) {
         this.id = id;
-        this.id_cliente = id_cliente;
+        this.cliente = cliente;
+        this.item = item;
         this.status = status;
         this.observacao = obs;
-        this.dataHoraPedido = dataHoraPedido;
-        this.dataHoraEntrega = dataHoraEntrega;
+        this.data_horario_pedido = data_horario_pedido;
+        this.data_horario_entrega = data_horario_entrega;
     }
 
     public Long getId() {
@@ -59,12 +69,21 @@ public class Pedido {
     }
 
     public Cliente getId_cliente() {
-        return id_cliente;
+        return cliente;
     }
 
-    public void setId_cliente(Cliente id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setId_cliente(Cliente cliente) {
+        this.cliente = cliente;
     }
+
+    public List<Item> getItem() {
+        return item;
+    }
+
+    public void setItem(List<Item> item) {
+        this.item = item;
+    }
+    
 
     public StatusPedido getStatus() {
         return status;
@@ -82,20 +101,20 @@ public class Pedido {
         this.observacao = obs;
     }
 
-    public LocalDateTime getDataHoraPedido() {
-        return dataHoraPedido;
+    public LocalDateTime getDataHorarioPedido() {
+        return data_horario_pedido;
     }
 
-    public void setDataHoraPedido(LocalDateTime dataHoraPedido) {
-        this.dataHoraPedido = dataHoraPedido;
+    public void setDataHorarioPedido(LocalDateTime data_horario_pedido) {
+        this.data_horario_pedido = data_horario_pedido;
     }
 
-    public LocalDateTime getDataHoraEntrega() {
-        return dataHoraEntrega;
+    public LocalDateTime getDataHorarioEntrega() {
+        return data_horario_entrega;
     }
 
-    public void setDataHoraEntrega(LocalDateTime dataHoraEntrega) {
-        this.dataHoraEntrega = dataHoraEntrega;
+    public void setDataHorarioEntrega(LocalDateTime data_horario_entrega) {
+        this.data_horario_entrega = data_horario_entrega;
     }
 
     @Override
