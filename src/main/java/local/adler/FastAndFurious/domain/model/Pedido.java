@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -23,41 +22,41 @@ import javax.validation.constraints.Size;
  */
 @Entity
 public class Pedido {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @ManyToOne
-    private Cliente cliente;
-    
-    @OneToMany(targetEntity=Item.class, mappedBy="id_pedido", fetch=FetchType.EAGER)
-    
+    private Cliente id_cliente;
+
+    @OneToMany(targetEntity = Item.class, mappedBy = "id_pedido", fetch = FetchType.EAGER)
+
     private List<Item> item = new ArrayList<>();
-    
+
     @NotBlank
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
-    
+
     @Size(max = 100)
     private String observacao;
-    
+
     @NotBlank
-    private LocalDateTime data_horario_pedido;
-    
-    private LocalDateTime data_horario_entrega;
+    private LocalDateTime dataHorarioPedido;
+
+    private LocalDateTime dataHorarioEntrega;
 
     public Pedido() {
     }
 
-    public Pedido(Long id, Cliente cliente, List<Item> item,StatusPedido status, String obs, LocalDateTime data_horario_pedido, LocalDateTime data_horario_entrega) {
+    public Pedido(Long id, Cliente id_cliente, List<Item> item, StatusPedido status, String obs, LocalDateTime dataHorarioPedido, LocalDateTime dataHorarioEntrega) {
         this.id = id;
-        this.cliente = cliente;
+        this.id_cliente = id_cliente;
         this.item = item;
         this.status = status;
         this.observacao = obs;
-        this.data_horario_pedido = data_horario_pedido;
-        this.data_horario_entrega = data_horario_entrega;
+        this.dataHorarioPedido = dataHorarioPedido;
+        this.dataHorarioEntrega = dataHorarioEntrega;
     }
 
     public Long getId() {
@@ -69,11 +68,11 @@ public class Pedido {
     }
 
     public Cliente getId_cliente() {
-        return cliente;
+        return id_cliente;
     }
 
     public void setId_cliente(Cliente cliente) {
-        this.cliente = cliente;
+        this.id_cliente = cliente;
     }
 
     public List<Item> getItem() {
@@ -83,7 +82,6 @@ public class Pedido {
     public void setItem(List<Item> item) {
         this.item = item;
     }
-    
 
     public StatusPedido getStatus() {
         return status;
@@ -102,19 +100,19 @@ public class Pedido {
     }
 
     public LocalDateTime getDataHorarioPedido() {
-        return data_horario_pedido;
+        return dataHorarioPedido;
     }
 
-    public void setDataHorarioPedido(LocalDateTime data_horario_pedido) {
-        this.data_horario_pedido = data_horario_pedido;
+    public void setDataHorarioPedido(LocalDateTime dataHorarioPedido) {
+        this.dataHorarioPedido = dataHorarioPedido;
     }
 
     public LocalDateTime getDataHorarioEntrega() {
-        return data_horario_entrega;
+        return dataHorarioEntrega;
     }
 
-    public void setDataHorarioEntrega(LocalDateTime data_horario_entrega) {
-        this.data_horario_entrega = data_horario_entrega;
+    public void setDataHorarioEntrega(LocalDateTime dataHorarioEntrega) {
+        this.dataHorarioEntrega = dataHorarioEntrega;
     }
 
     @Override
@@ -141,6 +139,5 @@ public class Pedido {
         }
         return true;
     }
-    
-    
+
 }

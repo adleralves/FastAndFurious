@@ -16,19 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author adler
  */
-
 @RestController
 @RequestMapping("/itens")
 public class ItemController {
-    
+
     @Autowired
     private ItemRepository itemRepository;
-    
+
     @GetMapping
     public List<Item> listarItem() {
         return itemRepository.findAll();
     }
-    
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Item addItem(@RequestBody Item item) {

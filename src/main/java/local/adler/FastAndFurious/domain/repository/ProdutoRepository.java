@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Adler
  */
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
-    
+
 }

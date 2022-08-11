@@ -16,23 +16,23 @@ import javax.validation.constraints.NotBlank;
  */
 @Entity
 public class Item {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @ManyToOne
-    @JoinColumn(name="id_pedido", nullable=false)
+    @JoinColumn(name = "id_pedido", nullable = false)
     private Pedido id_pedido;
-    
+
     @ManyToOne
     private Produto id_produto;
-    
+
     @NotBlank
     private int quantidade;
-    
+
     private String observacao;
-    
+
     @NotBlank
     private BigDecimal valorUnit;
 
@@ -119,6 +119,5 @@ public class Item {
         }
         return true;
     }
-    
-    
+
 }

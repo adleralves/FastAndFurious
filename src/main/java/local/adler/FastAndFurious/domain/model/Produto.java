@@ -15,18 +15,18 @@ import javax.validation.constraints.Size;
  */
 @Entity
 public class Produto {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @NotBlank
     @Size(max = 20)
     private String nome;
-    
+
     @NotBlank
     private String descricao;
-    
+
     @NotBlank
     private BigDecimal valorUnitario;
 
@@ -96,6 +96,5 @@ public class Produto {
         }
         return true;
     }
-    
-    
+
 }

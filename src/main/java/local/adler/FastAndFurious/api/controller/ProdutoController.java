@@ -14,23 +14,23 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Adler
  */
-
 @RestController
 public class ProdutoController {
-    
+
     @Autowired
     private ProdutoRepository produtoRepository;
-    
+
     @GetMapping("/produto")
-    public List<Produto> listar(){
+    public List<Produto> list() {
         return produtoRepository.findAll();
     }
-    @GetMapping("/produto/{id}")
-    public ResponseEntity<Produto> listarId(@PathVariable Long id){
-        Optional <Produto> produto = produtoRepository.findById(id);
+
+    @GetMapping("/produto/{id_produto}")
+    public ResponseEntity<Produto> listId(@PathVariable Long id_produto) {
+        Optional<Produto> produto = produtoRepository.findById(id_produto);
         if (produto.isPresent()) {
             return ResponseEntity.ok(produto.get());
-        }else{
+        } else {
             return ResponseEntity.notFound().build();
         }
     }

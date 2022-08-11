@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,34 +19,32 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author adler
  */
-
 @RestController
-@RequestMapping("/pedidos")
 public class PedidoController {
-    
+
     @Autowired
     private PedidoRepository pedidoRepository;
-    
+
     @Autowired
     private PedidoService pedidoService;
-    
-    @GetMapping("/listar")
-    public List<Pedido> listar() {
+
+    @GetMapping("/pedido")
+    public List<Pedido> list() {
         return pedidoRepository.findAll();
     }
-    
+
     @PostMapping("/criar")
     @ResponseStatus(HttpStatus.CREATED)
     public Pedido criar(@RequestBody Pedido pedido) {
         return pedidoService.criar(pedido);
     }
-    
-    @DeleteMapping("/{pedido_id}")
-    public ResponseEntity<Void> excluir (@PathVariable Long pedido_id) {
-        if(!pedidoRepository.existsById(pedido_id)) {
+
+    @DeleteMapping("/pedido/{id_pedido}")
+    public ResponseEntity<Void> excluir(@PathVariable Long id_pedido) {
+        if (!pedidoRepository.existsById(id_pedido)) {
             return ResponseEntity.notFound().build();
         }
-        pedidoRepository.deleteById(pedido_id);
+        pedidoRepository.deleteById(id_pedido);
         return ResponseEntity.noContent().build();
     }
 }

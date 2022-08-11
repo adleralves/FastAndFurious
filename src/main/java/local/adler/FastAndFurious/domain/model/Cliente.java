@@ -1,6 +1,5 @@
 package local.adler.FastAndFurious.domain.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,22 +11,21 @@ import javax.validation.constraints.Size;
  *
  * @author adler
  */
-
 @Entity
 public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @NotBlank
     @Size(max = 20)
     private String nome;
-    
+
     @NotBlank
     @Size(max = 200)
     private String endereco;
-    
+
     @NotBlank
     @Size(max = 30)
     private String bairro;
@@ -98,6 +96,5 @@ public class Cliente {
         }
         return true;
     }
-    
-    
+
 }

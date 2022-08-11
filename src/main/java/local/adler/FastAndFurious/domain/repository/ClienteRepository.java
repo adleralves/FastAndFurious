@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author adler
  */
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
-    
+
 }

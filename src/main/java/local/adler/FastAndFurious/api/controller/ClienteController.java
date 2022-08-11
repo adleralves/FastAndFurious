@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package local.adler.FastAndFurious.api.controller;
 
 import java.util.List;
@@ -25,34 +20,32 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author adler
  */
-
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
-    
+
     @Autowired
     private ClienteRepository clienteRepository;
-    
+
     @GetMapping("/listar")
-    public List<Cliente> listar() {
+    public List<Cliente> list() {
         return clienteRepository.findAll();
     }
-    
-    @GetMapping("/{cliente_id}")
-    public ResponseEntity<Cliente> listarID(@PathVariable Long cliente_id) {
-        Optional<Cliente> cliente = clienteRepository.findById(cliente_id);
-        
+
+    @GetMapping("/{id_cliente}")
+    public ResponseEntity<Cliente> listId(@PathVariable Long id_cliente) {
+        Optional<Cliente> cliente = clienteRepository.findById(id_cliente);
+
         if (cliente.isPresent()) {
             return ResponseEntity.ok(cliente.get());
         } else {
             return ResponseEntity.notFound().build();
         }
     }
-    
-    @PostMapping("/criar")
+
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente criar(@Valid @RequestBody Cliente cliente) {
         return clienteRepository.save(cliente);
     }
 }
-    
