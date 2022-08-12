@@ -1,6 +1,7 @@
 package local.adler.FastAndFurious.api.controller;
 
 import java.util.List;
+import java.util.Optional;
 import local.adler.FastAndFurious.domain.model.Pedido;
 import local.adler.FastAndFurious.domain.repository.PedidoRepository;
 import local.adler.FastAndFurious.domain.service.PedidoService;
@@ -36,15 +37,26 @@ public class PedidoController {
     @PostMapping("/criar")
     @ResponseStatus(HttpStatus.CREATED)
     public Pedido criar(@RequestBody Pedido pedido) {
-        return pedidoService.criar(pedido);
+        pedidoService.criar(pedido);
+        return pedido;
     }
 
-    @DeleteMapping("/pedido/{id_pedido}")
+    @DeleteMapping("/pedido/excluir/{id_pedido}")
     public ResponseEntity<Void> excluir(@PathVariable Long id_pedido) {
         if (!pedidoRepository.existsById(id_pedido)) {
             return ResponseEntity.notFound().build();
         }
         pedidoRepository.deleteById(id_pedido);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/pedido/{id_pedido}")
+    public ResponseEntity<Pedido> showPedido(@PathVariable Long id_pedido) {
+        Optional<Pedido> pedido = pedidoRepository.findById(id_pedido);
+        if (pedido.isPresent()) {
+            return ResponseEntity.ok(pedido.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

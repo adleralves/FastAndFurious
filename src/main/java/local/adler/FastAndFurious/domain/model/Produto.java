@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -21,11 +20,13 @@ public class Produto {
     private Long id;
 
     @NotBlank
-    @Size(max = 20)
     private String nome;
 
     @NotBlank
     private String descricao;
+
+    @NotBlank
+    private String quantidade;
 
     @NotBlank
     private BigDecimal valorUnitario;
@@ -33,11 +34,12 @@ public class Produto {
     public Produto() {
     }
 
-    public Produto(Long id, String descricao, BigDecimal valorUnitario, String nome) {
+    public Produto(Long id, String nome, String descricao, String quantidade, BigDecimal valorUnitario) {
         this.id = id;
-        this.descricao = descricao;
-        this.valorUnitario = valorUnitario;
         this.nome = nome;
+        this.descricao = descricao;
+        this.quantidade = quantidade;
+        this.valorUnitario = valorUnitario;
     }
 
     public Long getId() {
@@ -48,12 +50,28 @@ public class Produto {
         this.id = id;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public String getDescricao() {
         return descricao;
     }
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(String quantidade) {
+        this.quantidade = quantidade;
     }
 
     public BigDecimal getValorUnitario() {
@@ -64,18 +82,10 @@ public class Produto {
         this.valorUnitario = valorUnitario;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.id);
+        int hash = 5;
+        hash = 43 * hash + Objects.hashCode(this.id);
         return hash;
     }
 

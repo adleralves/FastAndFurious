@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotBlank;
 
 /**
  *
@@ -22,26 +21,21 @@ public class Item {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_pedido", nullable = false)
-    private Pedido id_pedido;
+    @JoinColumn(name = "produto")
+    private Produto produto;
 
-    @ManyToOne
-    private Produto id_produto;
-
-    @NotBlank
     private int quantidade;
 
     private String observacao;
 
-    @NotBlank
     private BigDecimal valorUnit;
 
     public Item() {
     }
 
-    public Item(Long id, Produto id_produto, int quantidade, String observacao, BigDecimal valorUnit) {
+    public Item(Long id, Produto produto, int quantidade, String observacao, BigDecimal valorUnit) {
         this.id = id;
-        this.id_produto = id_produto;
+        this.produto = produto;
         this.quantidade = quantidade;
         this.observacao = observacao;
         this.valorUnit = valorUnit;
@@ -55,20 +49,12 @@ public class Item {
         this.id = id;
     }
 
-    public Pedido getId_pedido() {
-        return id_pedido;
-    }
-
-    public void setId_pedido(Pedido id_pedido) {
-        this.id_pedido = id_pedido;
-    }
-
     public Produto getId_produto() {
-        return id_produto;
+        return produto;
     }
 
-    public void setId_produto(Produto id_produto) {
-        this.id_produto = id_produto;
+    public void setId_produto(Produto produto) {
+        this.produto = produto;
     }
 
     public int getQuantidade() {

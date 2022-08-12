@@ -4,16 +4,16 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 /**
@@ -28,30 +28,28 @@ public class Pedido {
     private Long id;
 
     @ManyToOne
-    private Cliente id_cliente;
+    @JoinColumn(name = "id_cliente")
+    private Cliente cliente;
 
-    @OneToMany(targetEntity = Item.class, mappedBy = "id_pedido", fetch = FetchType.EAGER)
-
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_pedido", referencedColumnName = "id")
     private List<Item> item = new ArrayList<>();
 
-    @NotBlank
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
     @Size(max = 100)
     private String observacao;
 
-    @NotBlank
     private LocalDateTime dataHorarioPedido;
-
     private LocalDateTime dataHorarioEntrega;
 
     public Pedido() {
     }
 
-    public Pedido(Long id, Cliente id_cliente, List<Item> item, StatusPedido status, String obs, LocalDateTime dataHorarioPedido, LocalDateTime dataHorarioEntrega) {
+    public Pedido(Long id, Cliente cliente, List<Item> item, StatusPedido status, String obs, LocalDateTime dataHorarioPedido, LocalDateTime dataHorarioEntrega) {
         this.id = id;
-        this.id_cliente = id_cliente;
+        this.cliente = cliente;
         this.item = item;
         this.status = status;
         this.observacao = obs;
@@ -68,11 +66,11 @@ public class Pedido {
     }
 
     public Cliente getId_cliente() {
-        return id_cliente;
+        return cliente;
     }
 
     public void setId_cliente(Cliente cliente) {
-        this.id_cliente = cliente;
+        this.cliente = cliente;
     }
 
     public List<Item> getItem() {
