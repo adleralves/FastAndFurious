@@ -19,7 +19,7 @@ public class PedidoService {
     
     public Pedido criar(Pedido pedido) {
         pedido.setDataHorarioPedido(LocalDateTime.now());
-        pedido.setStatus(StatusPedido.FINALIZADO);
+        pedido.setStatus(StatusPedido.EM_PREPARACAO);
          
         return pedidoRepository.save(pedido);
     }

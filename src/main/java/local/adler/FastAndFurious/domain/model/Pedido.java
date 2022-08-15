@@ -28,11 +28,11 @@ public class Pedido {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_cliente")
+    // @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_pedido", referencedColumnName = "id")
+    @JoinColumn(name = "pedido_id", referencedColumnName = "id")
     private List<Item> item = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
@@ -65,11 +65,11 @@ public class Pedido {
         this.id = id;
     }
 
-    public Cliente getId_cliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
-    public void setId_cliente(Cliente cliente) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 

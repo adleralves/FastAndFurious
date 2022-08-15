@@ -21,24 +21,24 @@ public class Item {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "produto")
+    @JoinColumn(name = "produto_id")
     private Produto produto;
 
     private int quantidade;
 
     private String observacao;
 
-    private BigDecimal valorUnit;
+    private BigDecimal valor_unitario;
 
     public Item() {
     }
 
-    public Item(Long id, Produto produto, int quantidade, String observacao, BigDecimal valorUnit) {
+    public Item(Long id, Produto produto, int quantidade, String observacao, BigDecimal valor_unitario) {
         this.id = id;
         this.produto = produto;
         this.quantidade = quantidade;
         this.observacao = observacao;
-        this.valorUnit = valorUnit;
+        this.valor_unitario = valor_unitario;
     }
 
     public long getId() {
@@ -73,12 +73,12 @@ public class Item {
         this.observacao = observacao;
     }
 
-    public BigDecimal getValorUnit() {
-        return valorUnit;
+    public BigDecimal getValor_unit() {
+        return valor_unitario;
     }
 
     public void setValorUnit(BigDecimal valorUnit) {
-        this.valorUnit = valorUnit;
+        this.valor_unitario = valorUnit;
     }
 
     @Override
